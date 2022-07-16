@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/login-design.css' %}">
+    <link rel="shortcut icon" href="{% static 'midia/livro-favico.ico' %}" type="image/x-icon">
+    <script src="{% static 'js/login.js' %}"></script>
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="main-login">
+        <div class="left-login">
+            <h1>Faça login e descubra o mundo</h1>
+            <img src="{% static 'midia/estudo-animacao.svg' %}" class="left-login-image" alt="estudo-animacao">
+        </div>
+        <div class="right-login">
+            <h1>LOGIN</h1>
+            <div class="card-login">
+                <div class="textfield">                 
+                    <label id = "label-usuario" for="usuario">Usuário</label>
+                    <input type="text" id ="usuario" placeholder="Usuário" required>
+                </div>
+                <div class="textfield">
+                    <label id = "label-senha" for="senha">Senha</label>
+                    <input type="password" id = "senha" placeholder="Senha" required>
+                </div>
+                <div class="resetsenha">
+                    <a href="esqueceuSenha">Esqueceu a senha?</a>
+                </div>
+                <button onclick = "cadastrar()" class="btn-login">Login</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

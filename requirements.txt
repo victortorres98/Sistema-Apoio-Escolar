@@ -11,8 +11,6 @@ django-bootstrap4==1.0.1
 django-timezone-field==4.0
 djangorestframework==3.11.0
 idna==2.8
-mysql-connector-python==8.0.17
-mysqlclient==1.4.4
 Naked==0.1.31
 protobuf==3.19.4
 PyJWT==1.7.1
