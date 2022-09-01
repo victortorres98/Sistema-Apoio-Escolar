@@ -8,30 +8,30 @@
           <div class="row justify-content-center">
             <div class="col-xl-4 col-lg-5 col-md-6 mb-5 mb-md-0">
               <div class="card card-body shadow">
-                <h1 class="h5 text-center">Create Account</h1>
+                <h1 class="h5 text-center">Crie sua conta</h1>
                 <form action="{% url 'login:registration' %}" method="post">
                     {% if message %}
                         <div class="alert alert-warning">{{ message }}</div>
                     {% endif %}
                     {% csrf_token %}
                   <div class="form-group">
-                    <input type="text" class="form-control" name="username" placeholder="Username">
+                    <input type="text" class="form-control" name="username" placeholder="Usuário">
                   </div>
                   <div class="form-group">
                     <input type="email" class="form-control" name="email" placeholder="Email">
                   </div>
                   <div class="form-group">
-                    <input type="password" class="form-control" name="password_01" placeholder="Password">
-                    <small>Password must be at least 8 characters</small>
+                    <input type="password" class="form-control" name="password_01" placeholder="Senha">
+                    <small>Senha deve ter no mínimo 8 caracteres</small>
                   </div>
                   <div class="form-group">
-                    <input type="password" class="form-control" name="password_02" placeholder="Confirm Password">
+                    <input type="password" class="form-control" name="password_02" placeholder="Confirme Senha">
                   </div>
-                  <button class="btn btn-primary btn-block" type="submit">Create Account</button>
+                  <button class="btn btn-primary btn-block" type="submit">Cadastre-se</button>
                 </form>
               </div>
               <div class="text-center text-small mt-3">
-                Already have an account? <a href="{% url 'login:login' %}">Sign in here</a>
+                Ja tem uma conta? <a href="{% url 'login:login' %}">Entre aqui</a>
               </div>
             </div>
             <div class="col-md-6 col-lg-auto ml-lg-5 ">
@@ -46,41 +46,6 @@
                   <div class="media rounded align-items-center pl-3 pr-3 pr-md-4 py-2 bg-white shadow-sm">
                     <img src="{% static 'img/about-1.jpg' %}" alt="Harvey Derwent avatar image" class="avatar avatar-sm flex-shrink-0 mr-3">
                     <div class="text-dark mb-0">&ldquo;Embers increases my money.&rdquo;</div>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <h2>All services include:</h2>
-                <div class="mb-3" data-aos="fade-left" data-aos-delay="300">
-                  <div class="d-flex align-items-center">
-                    <div class="rounded-circle bg-success-alt">
-                      <img src="{% static 'img/icons/interface/icon-check.svg' %}" alt="Binoculars icon" class="m-2 icon icon-xs bg-success" data-inject-svg>
-                    </div>
-                    <h6 class="mb-0 ml-3">24/7 online services</h6>
-                  </div>
-                </div>
-                <div class="mb-3" data-aos="fade-left" data-aos-delay="400">
-                  <div class="d-flex align-items-center">
-                    <div class="rounded-circle bg-success-alt">
-                      <img src="{% static 'img/icons/interface/icon-check.svg' %}" alt="Layouts icon" class="m-2 icon icon-xs bg-success" data-inject-svg>
-                    </div>
-                    <h6 class="mb-0 ml-3">Free Access</h6>
-                  </div>
-                </div>
-                <div class="mb-3" data-aos="fade-left" data-aos-delay="500">
-                  <div class="d-flex align-items-center">
-                    <div class="rounded-circle bg-success-alt">
-                      <img src="{% static 'img/icons/interface/icon-check.svg' %}" alt="Box icon" class="m-2 icon icon-xs bg-success" data-inject-svg>
-                    </div>
-                    <h6 class="mb-0 ml-3">real-time stock data</h6>
-                  </div>
-                </div>
-                <div class="mb-3" data-aos="fade-left" data-aos-delay="600">
-                  <div class="d-flex align-items-center">
-                    <div class="rounded-circle bg-success-alt">
-                      <img src="{% static 'img/icons/interface/icon-check.svg' %}" alt="Lightning icon" class="m-2 icon icon-xs bg-success" data-inject-svg>
-                    </div>
-                    <h6 class="mb-0 ml-3">Customs Your Preference</h6>
                   </div>
                 </div>
               </div>
