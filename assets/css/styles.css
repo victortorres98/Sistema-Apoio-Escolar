@@ -1,0 +1,94 @@
+.ui-group {
+    display: inline-block;
+}
+
+.ui-group__title {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 1.2rem;
+    line-height: 40px;
+    margin: 0 10px 0 0;
+    font-weight: bold;
+}
+
+.button-group {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.wl_now {
+    white-space: nowrap;
+    text-align: center;
+    font-size: 3rem;
+}
+
+.wl_change {
+    text-align: right;
+    font-size: 20px;
+    line-height: 26px;
+}
+
+body {
+font-family: "Poppins", sans-serif;
+background-color: #fafafa;
+}
+
+.row {
+display: flex;
+justify-content: center;
+align-items: center;
+margin-top: 0px;
+margin-bottom: 5px;
+}
+
+.card {
+border-radius: 5px;
+box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+padding: 30px;
+margin: 20px;
+width: 400px;
+transition: all 0.3s ease-out;
+}
+
+.card:hover {
+transform: translateY(-5px);
+cursor: pointer;
+}
+
+.card p {
+color: #a3a5ae;
+font-size: 50px;
+}
+
+.image {
+float: right;
+max-width: 64px;
+max-height: 64px;
+}
+
+.blue {
+border-left: 3px solid #4895ff;
+}
+
+.green {
+border-left: 3px solid #3bb54a;
+}
+
+.red {
+border-left: 3px solid #b3404a;
+}
+
+.grey {
+border-left: 3px solid #757171;
+}
+.dark {
+border-left: 3px solid #000000;
+}
+
+.pink {
+border-left: 3px solid #e210b5;
+}
+
+.final{
+    margin-bottom: 20px;
+}

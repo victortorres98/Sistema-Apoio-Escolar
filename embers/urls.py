@@ -22,6 +22,12 @@ from . import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name='index.html'), name='index'),
+    path('portu/', TemplateView.as_view(template_name='portu.html'), name='portu'),
+    path('mat/', TemplateView.as_view(template_name='mat.html'), name='mat'),
+    path('cien/', TemplateView.as_view(template_name='cien.html'), name='cien'),
+    path('ingles/', TemplateView.as_view(template_name='ingles.html'), name='ingles'),
+    path('geo/', TemplateView.as_view(template_name='geo.html'), name='geo'),
+    path('hist/', TemplateView.as_view(template_name='hist.html'), name='hist'),
     path('about_us/', TemplateView.as_view(template_name='about_us.html'), name='about_us'),
     path('contact_us/', TemplateView.as_view(template_name='contact_us.html'), name='contact_us'),
     path('', include('login.urls')),
