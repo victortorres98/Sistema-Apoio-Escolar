@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.urls import path, re_path
 from django.conf.urls import include
+from . import views
 
 app_name = 'materias'
 
 urlpatterns = [
-    
+    path('cadastro/', views.cadastrar_materia, name = 'cadastro'),
 ]
