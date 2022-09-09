@@ -92,3 +92,11 @@ border-left: 3px solid #e210b5;
 .final{
     margin-bottom: 20px;
 }
+
+.pt.title {
+    font-size: 4.5rem;
+    font-weight: 700;
+    line-height: 1; }
+    @media (max-width: 1200px) {
+      .pt.title {
+        font-size: calc(1.575rem + 3.9vw) ; } }
