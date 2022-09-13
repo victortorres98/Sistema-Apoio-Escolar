@@ -20,5 +20,5 @@ from . import views
 app_name = 'materias'
 
 urlpatterns = [
-    path('cadastro/', views.cadastrar_materia, name = 'cadastro'),
+    path('cadastro/', views.cadastrar_materia, name = 'cadastrar_materia'),
 ]
