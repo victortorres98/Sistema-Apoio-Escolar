@@ -2,91 +2,42 @@
 {% load static %}
 
 {% block title %}
-    SimTrade
+    Atividades
 {% endblock %}
 
 {% block content %}
     <section class="pb-0">
         <div class="container">
             <div class="p-0 text-dark rounded bg-white">
-                <div data-intro='This table shows your asset statistic!' data-step='1'>
-                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                        <h1 class="h2">Account</h1>
+                <div data-intro='Esses botões server para achar ou analisar suas atividades e notas!' data-step='1'>
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"> 
                         <div class="btn-toolbar mb-2 mb-md-0">
                             <a href="javascript:void(0);"
                                onclick="javascript:introJs().setOption('showProgress', true).start();"
                                class="mr-2 btn btn-sm btn-info">
-                                Intro
+                                Introdução
                             </a>
-                            <a href="{% url 'statistic:analysis' %}" class="btn btn-primary btn-sm mr-2" data-intro='Click this button to view your statistic chart.' data-step='5'>Analysis</a>
-                            <a href="{% url 'statistic:record' %}" class="btn btn-sm btn-secondary"
-                               data-intro='Click this button to view your trade record.' data-step='6'>
-                                View record
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="d-flex mb-3">
-                        <div class="p-2 flex-fill">
-                            <div class="numbers">
-                                <a href="#" data-toggle="tooltip" data-placement="top"
-                                   title="Calculated as: = cash + market value of stocks">
-                                    Account Value</a>
-                                <h4 class="mt-2 card-title">{{ acc.a }}</h4>
-                            </div>
-                        </div>
-                        <div class="p-2 flex-fill">
-                            <div class="numbers">
-                                <a href="#" data-toggle="tooltip" data-placement="top"
-                                   title="Total amount of cash available for trading stocks with">
-                                    Cash</a>
-                                <h4 class="mt-2 card-title">{{ acc.c }}</h4>
-                            </div>
-                        </div>
-                        <div class="p-2 flex-fill">
-                            <div class="numbers">
-                                <a href="#" data-toggle="tooltip" data-placement="top"
-                                   title="Total market value of stocks">
-                                    Stock Value</a>
-                                <h4 class="mt-2 card-title">{{ acc.s }}</h4>
-                            </div>
-                        </div>
-                        <div class="p-2 flex-fill">
-                            <div class="numbers">
-                                <a href="#" data-toggle="tooltip" data-placement="top"
-                                   title="Calculated as: = starting account value - current account value">
-                                    Earning Value</a>
-                                <h4 class="mt-2 card-title">{{ acc.e }}</h4>
-                            </div>
+                            <a href="{% url 'statistic:analysis' %}" class="btn btn-primary btn-sm mr-2" data-intro='Click aqui para ver a análise do seu progresso' data-step='4'>Análise</a>
                         </div>
                     </div>
                 </div>
-                <div data-intro='This panel about your stock!' data-step='2'>
-                    <h2>Owned Stocks</h2>
-                    <div id="toolbar" data-intro='Click these buttons to buy or sell stocks' data-step='3'>
+                <div data-intro='Aqui aparecerão suas atividades que você esta inscrito' data-step='2'>
+                    <h2>Atividades disponíveis</h2>
+                    <div id="toolbar" data-intro='Click aqui para se inscrever em atividades' data-step='3'>
                         <div class="form-inline" role="form">
                             <button type="button" class="btn btn-sm btn-info ml-2" data-toggle="modal"
                                     data-target="#purchase">
-                                Buy stock
-                            </button>
-                            <button type="button" class="btn btn-sm btn-warning ml-2" data-toggle="modal"
-                                    data-stock="" data-target="#sold">
-                                Sell stock
+                                Atividades
                             </button>
                         </div>
                     </div>
-                    <table id="ownedStock" data-toolbar="#toolbar" data-toggle="table" data-search="true"
-                           data-intro='All stocks you hold will show here.' data-step='4'>
+                    <table id="ownedStock" data-toolbar="#toolbar" data-toggle="table" data-search="false">
                         <thead>
                         <tr>
-                            <th data-field="sym" data-sortable="true">Symbol</th>
-                            <th data-field="val" data-sortable="true" data-formatter="eFormatter">Earnings</th>
-                            <th data-field="num" data-sortable="true">Quantity</th>
-                            <th data-field="cur" data-sortable="true">Current price</th>
-                            <th data-field="pay" data-sortable="true" data-formatter="pFormatter">Total paid</th>
-                            <th data-field="avg" data-sortable="true">Avg. purchase price</th>
-                            <th data-field="min" data-sortable="true">Min.</th>
-                            <th data-field="max" data-sortable="true">Max.</th>
+                            <th data-field="sym" data-sortable="true">Matéria</th>
+                            <th data-field="num" data-sortable="true">Atividade</th>
+                            <th data-field="val" data-sortable="true" data-formatter="eFormatter">Data de inscrição</th>
+                            <th data-field="cur" data-sortable="true">Realizado?</th>
                         </tr>
                         </thead>
                         <tbody>
