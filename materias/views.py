@@ -1,7 +1,6 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponse
 from materias import models
-import datetime
+from django.views.generic import CreateView, ListView
 
 # Create your views here.
 
@@ -17,3 +16,7 @@ def cadastrar_materia(request):
         nova_materia.save()
         return redirect('/')
     return render(request, 'materias/form.html')
+
+class Lista(ListView):
+    template_name = 'materia.html'
+    model = models.Materia
