@@ -21,5 +21,5 @@ app_name = 'materias'
 
 urlpatterns = [
     path('cadastro/', views.cadastrar_materia, name = 'cadastrar_materia'),
-    path('portugues', views.Lista, name= 'portugues')
+    path('inicio/', views.lista_de_materias, name= 'inicio')
 ]

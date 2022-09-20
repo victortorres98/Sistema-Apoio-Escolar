@@ -7,3 +7,6 @@ class Materia(models.Model):
     nome = models.CharField(unique=True, max_length=128)
     assunto = models.CharField(max_length=128, default='0')
     link = models.URLField(blank=False, null=False, max_length=256)
+
+    def __str__(self) -> str:
+        return self.nome

@@ -17,6 +17,20 @@ def cadastrar_materia(request):
         return redirect('/')
     return render(request, 'materias/form.html')
 
-class Lista(ListView):
-    template_name = 'materia.html'
+class ListaMaterias(ListView):
+    template_name = 'materias/home.html'
     model = models.Materia
+    context_object_name = 'materias'
+
+def lista_de_materias(request):
+    try:
+        print('caiu aqui')
+        materias_list = models.Materia.objects.all()
+        context = {
+            'materias': materias_list
+        }
+        print(materias_list)
+    except Exception as e:
+        return render(request, 'error.html', {'message':e.args[0]})
+
+    return render(request, 'materias/home.html', context)

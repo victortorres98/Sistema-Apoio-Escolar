@@ -18,10 +18,11 @@ from django.urls import path, include, re_path
 from django.views.generic import TemplateView
 from django.views.static import serve
 from . import settings
+from materias.views import lista_de_materias
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', TemplateView.as_view(template_name='index.html'), name='index'),
+    path('', lista_de_materias, name='index'),
     path('portu/', TemplateView.as_view(template_name='portu.html'), name='portu'),
     path('mat/', TemplateView.as_view(template_name='mat.html'), name='mat'),
     path('cien/', TemplateView.as_view(template_name='cien.html'), name='cien'),
