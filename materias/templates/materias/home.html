@@ -47,7 +47,7 @@
             <div class="row">
                 {% for materia in materias %}
                     <div> 
-                        <a class="card green" href="{% url 'portu' %}">{{ materia.nome }}</a>
+                        <a class="card green" href='/materia/{{ materia.slug }}'>{{ materia.nome }}</a>
                     </div>
                 {% endfor %}
             </div>

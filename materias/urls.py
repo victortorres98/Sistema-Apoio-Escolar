@@ -21,5 +21,6 @@ app_name = 'materias'
 
 urlpatterns = [
     path('cadastro/', views.cadastrar_materia, name = 'cadastrar_materia'),
-    path('inicio/', views.lista_de_materias, name= 'inicio')
+    path('inicio/', views.lista_de_materias, name= 'inicio'),
+    path('<slug>/', views.DetalheMateria.as_view(), name="materia"),
 ]
