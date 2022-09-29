@@ -25,4 +25,5 @@ urlpatterns = [
     path('cadastroAssunto/', views.cadastrar_assunto, name = 'cadastrarAssunto'),
     path('inicio/', views.lista_de_materias, name= 'inicio'),
     path('<slug>/', views.DetalheMateria.as_view(), name="materia"),
+    path('agenda/', views.mostrar_agenda, name= 'agenda'),
 ]

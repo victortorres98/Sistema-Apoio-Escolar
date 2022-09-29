@@ -1,0 +1,218 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Agenda
+{% endblock %}
+
+{% block content %}
+<title>Lembretes de tarefas</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Rammetto+One" rel="stylesheet">
+
+  </head>
+
+  <body>
+   <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <br><br>
+      <h1 class="display-3" style="
+      font-family: 'Rammetto One', cursive;">Agenda</h1>
+      <p class="lead" style="
+      font-family: 'Rammetto One', cursive; ">Veja suas tarefas por aqui</p> </div> 
+   </div>
+
+   <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div id="titular-new-reminder">
+          <h3><i class="fa fa-plus-square" aria-hidden="true"></i> Adicionar tarefa</h3>
+        </div> 
+        <br>
+
+        <div class="form-group text-center">
+          <textarea class="form-control" rows="5" id="texto"></textarea>
+          <br>
+          <button type="button" class="btn btn-success form-control" id="buttomSave"><i class="fa fa-save" aria-hidden="true"></i> Salvar</button>
+        </div>  
+
+        <!-- Create this div after function mostrarError() -->
+        <div id="error"></div>
+      </div>
+      <div class="col-md-6">
+        <div class="titular-tarefas">
+          <h3><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Pendentes</h3>       
+        </div>
+        <span id="recordatorios">
+          <br>
+        </span>
+      </div>
+
+     </div>
+   </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script>
+       
+    //Function para verificar de há texto...
+    function textoValido(texto){
+      if(texto == null || texto == "" || texto.lenght < 1){
+        return false;
+      }else{
+        return true;
+      }
+    }
+    
+    //Function para mostrar error...
+    function mostrarError(){
+      var html = "";
+      html += '<div class="alert alert-danger" role="alert">';
+      html += 'Por favor escreva algo';
+      html += '</div>';
+    
+      document.getElementById('error').innerHTML = html;
+    }
+    
+    //Function for clear this error
+    function limparError(){
+      document.getElementById("error").innerHTML = "";
+    }
+    
+    //Function for create to lembrete...
+    function createRecordatorio(){
+      var conteudoTextArea = document.getElementById("texto").value;
+      if(!textoValido(conteudoTextArea)){
+           mostrarError();
+           return;
+      }
+      limparError();
+
+      //variaveis de tempo
+      var referencia = new Date();
+      var id = referencia.getTime();
+      var data = referencia.toLocaleDateString();
+      var texto = conteudoTextArea;
+
+      //JSON
+
+      var recordatorio = {"id" : id, "data" : data, "texto" : texto}
+
+      //objeto
+      var recordatorio = {"id": id , "data" : data, "texto" : texto };
+
+      //Função para validação de existencia de lembrete
+      comprovaRecordatorio(recordatorio);
+    }
+
+    function comprovaRecordatorio(recordatorio){
+       var recordatorioExistentes = localStorage.getItem("recordatorios");
+       if(!recordatorioValido(recordatorioExistentes)){
+          var recordatorios = [];
+          recordatorios.push(recordatorio)
+
+          //Salva
+          saveRecordatorio(recordatorios);
+       
+        }else{
+          var recordatoriosRecuperados = JSON.parse(recordatorioExistentes);
+
+          //Salva
+          recordatoriosRecuperados.push(recordatorio);
+          saveRecordatorio(recordatoriosRecuperados);
+        }
+
+        //grava todos os dados
+        mostrarRecordatorios();
+    }
+
+    //Funcao salva recordatorio
+    function saveRecordatorio(recordatorios){
+      var recordatoriosJSON = JSON.stringify(recordatorios);
+      localStorage.setItem("recordatorios",recordatoriosJSON);
+    }
+
+    //Funcao para exibir itens
+    function mostrarRecordatorios (){
+      var html = "";
+
+      var recordatorioExistentes = localStorage.getItem("recordatorios")
+      if(!recordatorioValido(recordatorioExistentes)){
+        html = "Não existe nenhuma atividade";
+
+        document.getElementById("recordatorios").innerHTML = html;
+      }else{
+        var recordatoriosRecuperados = JSON.parse(recordatorioExistentes);
+        for(var i = 0; i < recordatoriosRecuperados.lenght;i++){
+           html = formatarRecordatorio(recordatoriosRecuperados[i]);
+        }
+        document.getElementById("recordatorios").innerHTML = html;
+      }
+
+    }
+
+    function recordatorioValido(recordatorioExistentes){
+      if(recordatorioExistentes == null || recordatorioExistentes == ""){
+        return false;
+      }else{
+        return true;
+      }
+    }
+
+    function formatarRecordatorio(recordatorio){
+      var html = "";
+      console.log(html);
+      html += '<div class="recordatorios" id="'+ recordatorio.id +'">';
+      html += '<div class="row">';
+      html += '<div class="col-6 text-left">';
+      html += '<small><i class="fa fa-calendar-alt" aria-hidden="true"></i>' + recordatorio.data + '</small>';
+      html += '</div>';
+      html += '<div class = "col-6 text-right">';
+      html += '<small><i class="fa fa-window-close" aria-hidden="true"></i></small>';
+      html += '</div>';
+      html += '</div>';
+      html += '<br>';
+      html += '<div class="row">';
+      html += '<div class="col-12"';
+      html += recordatorio.texto;
+      html += '</div>';
+      html += '</div>';
+      html += '</div>';
+      html += '<br>';
+
+      return html;
+      }
+
+      document.addEventListener('DOMContentLoaded', function(){
+      //mostrarError();
+    
+      //Chamamos a function createRecordatorio
+      document.getElementById("buttomSave").onclick = createRecordatorio;
+      mostrarRecordatorios();
+    });
+
+    </script>
+    <style>
+      #titular-new-reminder 
+      {
+        color:#3b5045;
+      }
+      
+      .titular-tarefas 
+      {
+        color:#3b5045;
+      }
+      </style>
+    </body>
+{% endblock %}

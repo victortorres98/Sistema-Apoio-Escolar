@@ -58,3 +58,6 @@ class DetalheMateria(DetailView):
     template_name = 'materias/materia.html'
     context_object_name = 'materia'
     slug_url_kwarg = 'slug'
+
+def mostrar_agenda (request):
+    return render(request, 'materias/agenda.html')
