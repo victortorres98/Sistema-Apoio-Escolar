@@ -53,11 +53,19 @@ def lista_de_materias_assunto(request):
         return render(request, 'error.html', {'message':e.args[0]})
     return render(request, 'materias/formAssunto.html', context)
 
+def mostrar_agenda(request):
+    try:
+        materias_list = models.Materia.objects.all()
+        context = {
+            'materias': materias_list
+        }
+    except Exception as e:
+        return render(request, 'error.html', {'message':e.args[0]})
+    return render(request, 'materias/agenda.html', context)
+
+
 class DetalheMateria(DetailView):
     model = models.Materia
     template_name = 'materias/materia.html'
     context_object_name = 'materia'
     slug_url_kwarg = 'slug'
-
-def mostrar_agenda (request):
-    return render(request, 'materias/agenda.html')

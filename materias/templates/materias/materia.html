@@ -24,7 +24,7 @@
                     <h1>Selecione a aula que gostaria de assistir</h1>
                 <br>
                 <div class="card-lista-aulas">
-                    {%if materia.nome == assunto%}
+                    
                     <a class="botao.aula" target="_blank" href='{{materia.link}}'><button style="background: #069cc2; border-radius: 6px; padding: 15px; cursor: pointer; color: #fff; border: none; font-size: 16px; width:55vw;">Gramática</button></a>
                     <br><br>
                     <a class="botao.aula" target="_blank" href="https://www.youtube.com"><button style="background: #069cc2; border-radius: 6px; padding: 15px; cursor: pointer; color: #fff; border: none; font-size: 16px; width:55vw;">Redação</button></a>
@@ -32,8 +32,6 @@
                     <a class="botao.aula" target="_blank" href="https://www.youtube.com"><button style="background: #069cc2; border-radius: 6px; padding: 15px; cursor: pointer; color: #fff; border: none; font-size: 16px; width:55vw;">Acentuação</button></a>
                     <br><br>
                     <a class="botao.aula" target="_blank" href="https://www.youtube.com"><button style="background: #069cc2; border-radius: 6px; padding: 15px; cursor: pointer; color: #fff; border: none; font-size: 16px; width:55vw;">Verbos</button></a>
-                    {% else %}
-                    {% endif %}
                 </div>
             </div>
         </div>  

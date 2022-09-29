@@ -24,6 +24,6 @@ urlpatterns = [
     path('assunto/', views.lista_de_materias_assunto, name = 'cadastrar_assunto'),
     path('cadastroAssunto/', views.cadastrar_assunto, name = 'cadastrarAssunto'),
     path('inicio/', views.lista_de_materias, name= 'inicio'),
+    path('agenda/', views.mostrar_agenda, name= 'mostrar_agenda'),
     path('<slug>/', views.DetalheMateria.as_view(), name="materia"),
-    path('agenda/', views.mostrar_agenda, name= 'agenda'),
 ]
