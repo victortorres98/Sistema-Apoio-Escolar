@@ -63,6 +63,18 @@ def mostrar_agenda(request):
         return render(request, 'error.html', {'message':e.args[0]})
     return render(request, 'materias/agenda.html', context)
 
+def mostrar_assunto(request, materia):
+    try:
+        print('caiu no metodo mostrar assunto')
+        print(request.GET.get('materia'))
+        print(request.GET.get('url_Retorno'))
+        materias_list = models.Materia.objects.get(nome=materias_list)
+        context = {
+            'assuntos': materias_list
+        }
+    except Exception as e:
+        return render(request, 'error.html', {'message':e.args[0]})
+    return render(request, 'materias/materia.html', context)
 
 class DetalheMateria(DetailView):
     model = models.Materia

@@ -3,18 +3,18 @@
 
 {% block title %}
     {{materia.nome}}
-    {% for materia in assunto %}
-        {{materia.nome}}
-    {% endfor %}
 {% endblock %}
 
 {% block content %}
 {% if not request.session.user_id %}
 {% else %}
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
     <section class="bg-primary-3 text-dark">
+    {% csrf_token %}
         <div class="container">
             <div class="row justify-content-center text-center">
-                <h1 class="display-3"> {{materia.nome}} </h1>
+                <h1 id="nomeMateria" class="display-3"> {{materia.nome}} </h1>
             </div>
             <br>
             <br>
@@ -36,6 +36,52 @@
             </div>
         </div>  
     </section>
+<script>
+    $(document).ready(function() {
+        console.log('inicio')
+        const materia = document.getElementById("nomeMateria").innerHTML
+        var url_atual = window.location.href;
+        
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        console.log(csrftoken)
+        console.log(url_atual)
+        buscarAssunto(materia, url_atual, csrftoken)
+    }); 
+
+    function buscarAssunto(materia, url_atual, token){
+        var teste = $.ajax({
+            url : "http://127.0.0.1:8000/materia/assuntoMateria/",
+            type : 'post',
+            headers: {
+                'X_CSRF_TOKEN': token,
+                'Content-Type':'application/json'
+            },
+            data : {
+                materia : materia,
+                urlRetorno: url_atual,
+            },
+        
+            success: function(response){
+		        console.log(response);
+            }
+        })
+    } 
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+}
+</script>
 {% endif %}
 {% endblock %}
-

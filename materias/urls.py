@@ -25,5 +25,6 @@ urlpatterns = [
     path('cadastroAssunto/', views.cadastrar_assunto, name = 'cadastrarAssunto'),
     path('inicio/', views.lista_de_materias, name= 'inicio'),
     path('agenda/', views.mostrar_agenda, name= 'mostrar_agenda'),
+    path('assuntoMateria/', views.mostrar_assunto, name= 'mostrar_agenda'),
     path('<slug>/', views.DetalheMateria.as_view(), name="materia"),
 ]
