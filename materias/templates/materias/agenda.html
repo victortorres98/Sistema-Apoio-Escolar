@@ -8,221 +8,255 @@
 {% block content %}
 <title>Lembretes de tarefas</title>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-
-    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-
-    <link href="https://fonts.googleapis.com/css?family=Rammetto+One" rel="stylesheet">
-
-  </head>
-
-  <body>
-   <div class="jumbotron jumbotron-fluid">
+ <body>
+  <div class="jumbotron jumbotron-fluid">
     <div class="container">
-      <br><br>
+      <br><br><br>
       <h1 class="display-3">Agenda</h1>
       <br>
-      <p class="lead" style="
-      font-family: 'Rammetto One', cursive; ">Veja suas tarefas por aqui</p> </div> 
+      <p>Veja suas tarefas por aqui</p> 
    </div>
-
-   <div class="container">
-    <div class="row">
-      <div class="col-md-6">
-        <div id="titular-new-reminder">
-          <h3><i class="fa fa-plus-square" aria-hidden="true"></i> Adicionar tarefa</h3>
-        </div> 
-        <div class="p-4 ng-purple-100 text-purple-900 flex">
-          <label for="when" class = "mr-4">Data</label>
-          <input type="date" id="when" name="trip-start"
-          min = "2021-10-22" max="2023-10-10">
-        </div>
-        <div>
-          <input class = "form-control" type="text" placeholder="Materia da atividade" list="Materia">
-          <datalist id="Materia">
-            <option value="Matematica"></option>
-            <option value="Português"></option>
-          </datalist>
-        </div>
-        <br>
-        <div class="form-group text-center">
-          <textarea class="form-control" rows="5" id="texto"></textarea>
-          <br>
-          <button type="button" class="btn btn-success form-control" id="buttomSave"><i class="fa fa-save" aria-hidden="true"></i> Salvar</button>
-        </div>  
-
-        <!-- Create this div after function mostrarError() -->
-        <div id="error"></div>
-      </div>
-      <div class="col-md-6">
-        <div class="titular-tarefas">
-          <h3><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Pendentes</h3>       
-        </div>
-        <span id="recordatorios">
-          <br>
-        </span>
+    <div class="container">
+      <div class="new-task-container">
+        <input
+          type="text"
+          class="new-task-input"
+          placeholder="Tarefa para ser feita..."
+        />  
+        <input class="new-task-date" type="date" id="when" name="trip-start"min = "2021-10-22" max="2023-10-10">
+        <button class="new-task-button">Adicionar</button> 
       </div>
 
-     </div>
-   </div>
+      <div class="tasks-container"></div>
+    </div>
+    <br><br>
+    <script
+      src="https://kit.fontawesome.com/f9e19193d6.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+  <style>
+   *  {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+.container {
+  padding: 30px 40px;
+  width: 40%;
+  min-width: 500px;
+}
 
-    <script>
-       
-    //Function para verificar de há texto...
-    function textoValido(texto){
-      if(texto == null || texto == "" || texto.lenght < 1){
-        return false;
-      }else{
-        return true;
-      }
+.new-task-container {
+  background-color: #fff;
+  padding: 30px 20px;
+  border-radius: 5px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  display: flex ;
+  align-items: center; 
+  justify-content: center;
+}
+
+.new-task-container input {
+  flex: 3;
+  font-size: 1rem;
+  border: 2px solid #d1d3d4;
+  border-radius: 5px;
+  padding: 12px;
+  font-weight: 500;
+}
+
+.new-task-container input:focus {
+  outline: none;
+  border-color: #41b883;
+}
+
+.new-task-button {
+  flex: 1;
+  border-radius: 5px;
+  font-weight: 500;
+  height: 100%;
+  font-size: 1rem;
+  border: none;
+  background-color: #41b883;
+  color: #fff;
+  padding: 12px;
+  margin-left: 12px;
+  cursor: pointer;
+}
+
+.tasks-container {
+  background-color: #fff;
+  padding: 30px 20px;
+  margin-top: 60px;
+  border-radius: 10px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  width: 100%;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  margin-top: 6px;
+}
+
+.task-item i {
+  background-color: #41b883;
+  color: #fff;
+  padding: 12px;
+  border-radius: 5px;
+}
+
+.task-item i:hover {
+  cursor: pointer;
+}
+
+/* Utilities */
+.error {
+  border: 2px solid red !important;
+}
+
+.error::placeholder {
+  color: red;
+}
+
+.completed {
+  text-decoration: line-through;
+}
+  </style>
+  <script>
+const inputElement = document.querySelector(".new-task-input");
+const addTaskButton = document.querySelector(".new-task-button");
+
+const tasksContainer = document.querySelector(".tasks-container");
+
+const validateInput = () => inputElement.value.trim().length > 0;
+
+const handleAddTask = () => {
+  const inputIsValid = validateInput();
+
+  console.log(inputIsValid);
+
+  if (!inputIsValid) {
+    return inputElement.classList.add("error");
+  }
+
+  const taskItemContainer = document.createElement("div");
+  taskItemContainer.classList.add("task-item");
+
+  const taskContent = document.createElement("p");
+  taskContent.innerText = inputElement.value;
+
+  taskContent.addEventListener("click", () => handleClick(taskContent));
+
+  const deleteItem = document.createElement("i");
+  deleteItem.classList.add("far");
+  deleteItem.classList.add("fa-trash-alt");
+
+  deleteItem.addEventListener("click", () =>
+    handleDeleteClick(taskItemContainer, taskContent)
+  );
+
+  taskItemContainer.appendChild(taskContent);
+  taskItemContainer.appendChild(deleteItem);
+
+  tasksContainer.appendChild(taskItemContainer);
+
+  inputElement.value = "";
+
+  updateLocalStorage();
+};
+
+const handleClick = (taskContent) => {
+  const tasks = tasksContainer.childNodes;
+
+  for (const task of tasks) {
+    const currentTaskIsBeingClicked = task.firstChild.isSameNode(taskContent);
+
+    if (currentTaskIsBeingClicked) {
+      task.firstChild.classList.toggle("completed");
     }
-    
-    //Function para mostrar error...
-    function mostrarError(){
-      var html = "";
-      html += '<div class="alert alert-danger" role="alert">';
-      html += 'Por favor escreva algo';
-      html += '</div>';
-    
-      document.getElementById('error').innerHTML = html;
+  }
+
+  updateLocalStorage();
+};
+
+const handleDeleteClick = (taskItemContainer, taskContent) => {
+  const tasks = tasksContainer.childNodes;
+
+  for (const task of tasks) {
+    const currentTaskIsBeingClicked = task.firstChild.isSameNode(taskContent);
+
+    if (currentTaskIsBeingClicked) {
+      taskItemContainer.remove();
     }
-    
-    //Function for clear this error
-    function limparError(){
-      document.getElementById("error").innerHTML = "";
-    }
-    
-    //Function for create to lembrete...
-    function createRecordatorio(){
-      var conteudoTextArea = document.getElementById("texto").value;
-      if(!textoValido(conteudoTextArea)){
-           mostrarError();
-           return;
-      }
-      limparError();
+  }
 
-      //variaveis de tempo
-      var referencia = new Date();
-      var id = referencia.getTime();
-      var data = referencia.toLocaleDateString();
-      var texto = conteudoTextArea;
+  updateLocalStorage();
+};
 
-      //JSON
+const handleInputChange = () => {
+  const inputIsValid = validateInput();
 
-      var recordatorio = {"id" : id, "data" : data, "texto" : texto}
+  if (inputIsValid) {
+    return inputElement.classList.remove("error");
+  }
+};
 
-      //objeto
-      var recordatorio = {"id": id , "data" : data, "texto" : texto };
+const updateLocalStorage = () => {
+  const tasks = tasksContainer.childNodes;
 
-      //Função para validação de existencia de lembrete
-      comprovaRecordatorio(recordatorio);
-    }
+  const localStorageTasks = [...tasks].map((task) => {
+    const content = task.firstChild;
+    const isCompleted = content.classList.contains("completed");
 
-    function comprovaRecordatorio(recordatorio){
-       var recordatorioExistentes = localStorage.getItem("recordatorios");
-       if(!recordatorioValido(recordatorioExistentes)){
-          var recordatorios = [];
-          recordatorios.push(recordatorio)
+    return { description: content.innerText, isCompleted };
+  });
 
-          //Salva
-          saveRecordatorio(recordatorios);
-       
-        }else{
-          var recordatoriosRecuperados = JSON.parse(recordatorioExistentes);
+  localStorage.setItem("tasks", JSON.stringify(localStorageTasks));
+};
 
-          //Salva
-          recordatoriosRecuperados.push(recordatorio);
-          saveRecordatorio(recordatoriosRecuperados);
-        }
+const refreshTasksUsingLocalStorage = () => {
+  const tasksFromLocalStorage = JSON.parse(localStorage.getItem("tasks"));
 
-        //grava todos os dados
-        mostrarRecordatorios();
+  if (!tasksFromLocalStorage) return;
+
+  for (const task of tasksFromLocalStorage) {
+    const taskItemContainer = document.createElement("div");
+    taskItemContainer.classList.add("task-item");
+
+    const taskContent = document.createElement("p");
+    taskContent.innerText = task.description;
+
+    if (task.isCompleted) {
+      taskContent.classList.add("completed");
     }
 
-    //Funcao salva recordatorio
-    function saveRecordatorio(recordatorios){
-      var recordatoriosJSON = JSON.stringify(recordatorios);
-      localStorage.setItem("recordatorios",recordatoriosJSON);
-    }
+    taskContent.addEventListener("click", () => handleClick(taskContent));
 
-    //Funcao para exibir itens
-    function mostrarRecordatorios (){
-      var html = "";
+    const deleteItem = document.createElement("i");
+    deleteItem.classList.add("far");
+    deleteItem.classList.add("fa-trash-alt");
 
-      var recordatorioExistentes = localStorage.getItem("recordatorios")
-      if(!recordatorioValido(recordatorioExistentes)){
-        html = "Não existe nenhuma atividade";
+    deleteItem.addEventListener("click", () =>
+      handleDeleteClick(taskItemContainer, taskContent)
+    );
 
-        document.getElementById("recordatorios").innerHTML = html;
-      }else{
-        var recordatoriosRecuperados = JSON.parse(recordatorioExistentes);
-        for(var i = 0; i < recordatoriosRecuperados.lenght;i++){
-           html = formatarRecordatorio(recordatoriosRecuperados[i]);
-        }
-        document.getElementById("recordatorios").innerHTML = html;
-      }
+    taskItemContainer.appendChild(taskContent);
+    taskItemContainer.appendChild(deleteItem);
 
-    }
+    tasksContainer.appendChild(taskItemContainer);
+  }
+};
 
-    function recordatorioValido(recordatorioExistentes){
-      if(recordatorioExistentes == null || recordatorioExistentes == ""){
-        return false;
-      }else{
-        return true;
-      }
-    }
+refreshTasksUsingLocalStorage();
 
-    function formatarRecordatorio(recordatorio){
-      var html = "";
-      console.log(html);
-      html += '<div class="recordatorios" id="'+ recordatorio.id +'">';
-      html += '<div class="row">';
-      html += '<div class="col-6 text-left">';
-      html += '<small><i class="fa fa-calendar-alt" aria-hidden="true"></i>' + recordatorio.data + '</small>';
-      html += '</div>';
-      html += '<div class = "col-6 text-right">';
-      html += '<small><i class="fa fa-window-close" aria-hidden="true"></i></small>';
-      html += '</div>';
-      html += '</div>';
-      html += '<br>';
-      html += '<div class="row">';
-      html += '<div class="col-12"';
-      html += recordatorio.texto;
-      html += '</div>';
-      html += '</div>';
-      html += '</div>';
-      html += '<br>';
+addTaskButton.addEventListener("click", () => handleAddTask());
 
-      return html;
-      }
-
-      document.addEventListener('DOMContentLoaded', function(){
-      //mostrarError();
-    
-      //Chamamos a function createRecordatorio
-      document.getElementById("buttomSave").onclick = createRecordatorio;
-      mostrarRecordatorios();
-    });
-
-    </script>
-    <style>
-      #titular-new-reminder 
-      {
-        color:#3b5045;
-      }
-      
-      .titular-tarefas 
-      {
-        color:#3b5045;
-      }
-      </style>
-    </body>
+inputElement.addEventListener("change", () => handleInputChange());
+  </script>
 {% endblock %}
