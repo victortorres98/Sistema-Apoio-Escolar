@@ -2,6 +2,7 @@ from statistics import mode
 from django.shortcuts import render,redirect
 from materias import models
 from django.views.generic.detail import DetailView
+from django.http.response import JsonResponse
 
 # Create your views here.
 def cadastrar_materia(request):
@@ -63,18 +64,14 @@ def mostrar_agenda(request):
         return render(request, 'error.html', {'message':e.args[0]})
     return render(request, 'materias/agenda.html', context)
 
-def mostrar_assunto(request, materia):
+def mostrar_assunto(request):
     try:
         print('caiu no metodo mostrar assunto')
-        print(request.GET.get('materia'))
-        print(request.GET.get('url_Retorno'))
-        materias_list = models.Materia.objects.get(nome=materias_list)
-        context = {
-            'assuntos': materias_list
-        }
+        materia = request.GET.get('materia')
+        assunto = models.Assunto.objects.filter(materia=materia).values_list('nome','link')
     except Exception as e:
         return render(request, 'error.html', {'message':e.args[0]})
-    return render(request, 'materias/materia.html', context)
+    return JsonResponse(list(assunto), safe=False)
 
 class DetalheMateria(DetailView):
     model = models.Materia
