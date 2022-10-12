@@ -20,6 +20,7 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,600;1,200;1,400;1,600&display=swap"
       rel="stylesheet"
     />
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -166,6 +167,17 @@
    data-aos-offset="2000" data-aos-mirror="true" data-aos-once="false">
     <img src="{% static 'img/icons/interface/icon-arrow-up.svg' %}" alt="Icon" class="icon bg-white" data-inject-svg>
 </a>
+
+<script>
+    $(document).ready(function() {
+        console.log('inicio')
+        const tipoUser = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        console.log(tipoUser);
+        
+    }); 
+</script>
+
+
 <!-- Required vendor scripts (Do not remove) -->
 <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>

@@ -66,7 +66,6 @@ def mostrar_agenda(request):
 
 def mostrar_assunto(request):
     try:
-        print('caiu no metodo mostrar assunto')
         materia = request.GET.get('materia')
         assunto = models.Assunto.objects.filter(materia=materia).values_list('nome','link')
     except Exception as e:

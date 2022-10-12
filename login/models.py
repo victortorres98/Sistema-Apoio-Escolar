@@ -12,6 +12,7 @@ class User(models.Model):
     cash = models.DecimalField(max_digits=12, decimal_places=2, default=1000000)
     init = models.DecimalField(max_digits=12, decimal_places=2, default=1000000)
     createdAt = models.DateTimeField(auto_now_add=True)
+    tipoUser = models.CharField(blank=False, null=False, max_length=256, default="ALUNO")
 
     def __str__(self):
         return 'User' + self.username
