@@ -23,20 +23,11 @@ from materias.views import lista_de_materias
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', lista_de_materias, name='index'),
-    path('portu/', TemplateView.as_view(template_name='portu.html'), name='portu'),
-    path('mat/', TemplateView.as_view(template_name='mat.html'), name='mat'),
-    path('cien/', TemplateView.as_view(template_name='cien.html'), name='cien'),
-    path('ingles/', TemplateView.as_view(template_name='ingles.html'), name='ingles'),
-    path('geo/', TemplateView.as_view(template_name='geo.html'), name='geo'),
-    path('hist/', TemplateView.as_view(template_name='hist.html'), name='hist'),
     path('about_us/', TemplateView.as_view(template_name='about_us.html'), name='about_us'),
     path('contact_us/', TemplateView.as_view(template_name='contact_us.html'), name='contact_us'),
     path('', include('login.urls')),
     path('', include('tutorial.urls')),
-    path('', include('sim_trade.urls')),
-    path('', include('watchlist.urls')),
-    path('', include('stock.urls')),
-    path('', include('statistic.urls')),
+
     path('materia/', include('materias.urls')),
 
     # server是一个视图函数server(request, path), 通过path找到文件然后返回response

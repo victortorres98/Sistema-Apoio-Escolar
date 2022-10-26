@@ -1,5 +1,4 @@
 from django.db import models
-from sim_trade.models import Owned, Record
 
 # Create your models here.
 

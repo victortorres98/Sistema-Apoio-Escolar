@@ -37,12 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'login',
     'tutorial',
-    'sim_trade',
     'materias',
-    'watchlist',
-    'statistic',
-    'stock',  # app for showing stock detail
-    'django_apscheduler',  # for job scheduling
+
 ]
 
 MIDDLEWARE = [
