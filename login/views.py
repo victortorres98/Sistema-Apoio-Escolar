@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from login import models
+from login.models import *
 
 
 def index(request):
@@ -8,7 +8,7 @@ def index(request):
 
 def login(request):
     if request.session.get('user_id', ''):
-        return redirect("/table/")
+        return redirect("/")
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -16,7 +16,7 @@ def login(request):
         message = 'check input contents'
         if username.strip() and password.strip():
             try:
-                user = models.User.objects.get(username=username)
+                user = Aluno.objects.get(username=username)
             except:
                 message = 'username does not exist!'
                 return render(request, 'login/login.html', {'message': message})
@@ -48,16 +48,16 @@ def registration(request):
                 message = 'two passwords are different'
                 return render(request, 'login/registration.html', {'message': message})
             else:
-                same_username = models.User.objects.filter(username=username)
+                same_username = Aluno.objects.filter(username=username)
                 if same_username:
                     message = 'username already exists!'
                     return render(request, 'login/registration.html', {'message': message})
-                same_email = models.User.objects.filter(email=email)
+                same_email = Aluno.objects.filter(email=email)
                 if same_email:
                     message = 'email has been used!'
                     return render(request, 'login/registration.html', {'message': message})
                 # create user info
-                new_user = models.User()
+                new_user = Aluno()
                 new_user.username = username
                 new_user.password = password_01
                 new_user.email = email
