@@ -12,7 +12,7 @@ class Professor(models.Model):
     createdAt = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return 'User' + self.username
+        return self.username
 
     class Meta:
         verbose_name_plural = 'Professores'
@@ -28,7 +28,7 @@ class Aluno(models.Model):
     createdAt = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return 'User' + self.username
+        return self.username
 
     class Meta:
         verbose_name_plural = 'Alunos'
