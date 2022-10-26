@@ -7,7 +7,9 @@
 
 {% block content %}
 <title>Lembretes de tarefas</title>
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+<script src="https://npmcdn.com/flatpickr@4.6.13/dist/l10n/pt.js"></script>
  <body>
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
@@ -18,15 +20,10 @@
    </div>
     <div class="container">
       <div class="new-task-container">
-        <input
-          type="text"
-          class="new-task-input"
-          placeholder="Tarefa para ser feita..."
-        />  
-        <input class="new-task-date" type="date" id="when" name="trip-start"min = "2021-10-22" max="2023-10-10">
+        <input type="text" class="new-task-input" placeholder="Tarefa para ser feita..."/>  
+        <input placeholder="Data Limite" class="new-task-date" type="date" id="date" name="trip-start" min = "2021-10-22" max="2023-10-10"/>
         <button class="new-task-button">Adicionar</button> 
       </div>
-
       <div class="tasks-container"></div>
     </div>
     <br><br>
@@ -35,6 +32,7 @@
       crossorigin="anonymous"
     ></script>
   </body>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <style>
    *  {
   margin: 0;
@@ -102,6 +100,7 @@
   align-items: center;
   margin-bottom: 6px;
   margin-top: 6px;
+  color: black;
 }
 
 .task-item i {
@@ -129,17 +128,25 @@
 }
   </style>
   <script>
+  config = {
+    enableTime: true,
+    dateFormat: "d/m/Y H:i",
+    locale : "pt",
+  }
+//flatpickr para a configuração do formato da data 
+flatpickr("input[type=date]",config); 
+
 const inputElement = document.querySelector(".new-task-input");
 const addTaskButton = document.querySelector(".new-task-button");
 
 const tasksContainer = document.querySelector(".tasks-container");
 
+const inputDateElement = document.querySelector(".new-task-date");
+
 const validateInput = () => inputElement.value.trim().length > 0;
 
 const handleAddTask = () => {
   const inputIsValid = validateInput();
-
-  console.log(inputIsValid);
 
   if (!inputIsValid) {
     return inputElement.classList.add("error");
@@ -149,9 +156,17 @@ const handleAddTask = () => {
   taskItemContainer.classList.add("task-item");
 
   const taskContent = document.createElement("p");
-  taskContent.innerText = inputElement.value;
+  taskContent.innerText = inputDateElement.value;
 
-  taskContent.addEventListener("click", () => handleClick(taskContent));
+  var inputEspacoElement = "⠀⠀⠀|⠀⠀⠀";
+
+  const espacoContent = document.createElement("p");
+  taskContent.innerText += inputEspacoElement;
+
+  const taskDateContent = document.createElement("p");
+  taskContent.innerText += inputElement.value;
+
+  taskContent.addEventListener("click", () => handleClick(taskDateContent,taskContent));
 
   const deleteItem = document.createElement("i");
   deleteItem.classList.add("far");
