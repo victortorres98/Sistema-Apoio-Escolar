@@ -1,6 +1,7 @@
 from statistics import mode
 from django.shortcuts import render,redirect
 from materias import models
+from login.models import Aluno
 from django.views.generic.detail import DetailView
 from django.http.response import JsonResponse
 
