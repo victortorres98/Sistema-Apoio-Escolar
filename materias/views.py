@@ -57,9 +57,9 @@ def lista_de_materias_assunto(request):
 
 def mostrar_agenda(request):
     try:
-        materias_list = models.Materia.objects.all()
+        agenda_list = models.Agenda.objects.all()
         context = {
-            'materias': materias_list
+            'tarefas': agenda_list
         }
     except Exception as e:
         return render(request, 'error.html', {'message':e.args[0]})

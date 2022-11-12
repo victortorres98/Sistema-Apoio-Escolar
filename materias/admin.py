@@ -8,3 +8,4 @@ class ListandoMaterias(admin.ModelAdmin):
 
 admin.site.register(Materia, ListandoMaterias)
 admin.site.register(Assunto)
+admin.site.register(Agenda)

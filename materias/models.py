@@ -26,3 +26,14 @@ class Assunto(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
+
+class Agenda(models.Model):
+    materia = models.ForeignKey(Materia, on_delete=models.CASCADE)
+    tarefa= models.CharField(unique=False, max_length=128)
+    data = models.DateField()
+
+    def __str__(self):
+        return self.tarefa
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
