@@ -45,7 +45,7 @@ def registration(request):
         password_02 = request.POST.get('password_02')
         if username.strip() and email.strip() and password_01.strip() and password_02.strip():
             if password_01 != password_02:
-                message = 'two passwords are different'
+                message = 'as senhas estão diferentes'
                 return render(request, 'login/registration.html', {'message': message})
             else:
                 same_username = Aluno.objects.filter(username=username)
