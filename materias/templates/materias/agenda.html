@@ -23,12 +23,13 @@
             <br>
             <div class="main-materia row justify-content-center text-center">
                 {% for tarefa in tarefas %}
-                    <ul class="list-group">
-                        <li class="list-group-item ">{{tarefa.materia}}</li>
-                        <li class="list-group-item">{{tarefa.tarefa}}</li>
-                        <li class="list-group-item">{{tarefa.data}}</li>
-                        <br>
-                    </ul>
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{tarefa.materia}}</h5>
+                            <h5 class="card-subtitle mb-2 text-muted">{{tarefa.tarefa}}</h5>
+                            <h5 class="card-subtitle mb-2 text-muted">{{tarefa.data}}</h5>
+                        </div>
+                    </div>
                 {% endfor %}
             </div>
         </div>  
